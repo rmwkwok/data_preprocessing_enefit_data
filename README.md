@@ -22,7 +22,7 @@ GBDT dataframe done and saved:
 NaN/Inf = 7152, NonNum Cols = 0, shape = (2012496, 201)
 ```
 
-For those interested, `(634, 24, 5, 8, 14, 16)` is an array of 634 days, 24 time-series per day, 5 steps per series, 8 * 14 grids per step, and 16 features per grid. This and other arrays were used to train a U-net-like 2D+3D Convolutional network, trying to find relation between forecasted and recorded weather data.
+For those interested, `(634, 24, 5, 8, 14, 16)` is an array of 634 days, 24 time-series per day, 5 steps per series, 8 * 14 grids per step, and 16 features per grid. This and other arrays were used to train a U-net-like, conditional, 2D+3D Convolutional network, trying to find relation between forecasted and recorded weather data.
 
 A `Data` class is defined in accordance with the competition's way of providing the data - each object expects a day-worth of data in several dataframes. While the current script has one chain of methods for each of the dataframes, it is also possible to have one chain for all of them, by having the `Data` class inheriting the `FocusableBase` defined but unused in `data_class.py`. `FocusableBase` lets us designate a dataframe-of-focus and redirect all method calls to it. `FocusableBase` was made for fun :) only.
 
