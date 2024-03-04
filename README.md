@@ -1,8 +1,10 @@
 # Data Preprocessing for Enefit's Kaggle dataset
 
-This demonstrates the use of method chaining in processing multiple dataframes, and merge the processed dataframes into a final dataframe. These dataframes are then combined into a dataset for training Neural Network models and a dataset for training Gradient Boosted Decision Trees models.
+This demonstrates the use of method chaining in processing multiple dataframes, and merge the processed dataframes into a final dataframe. The preprocessing functions are intentionally saved in multiple utilities scripts for clearity, and the scripts' names explain their purposes.
 
-To run this script, the dataset needs to be downloaded from [Kaggle](https://www.kaggle.com/competitions/predict-energy-behavior-of-prosumers) and unzipped to the directory of the script. Below is the expected result:
+All processed dataframes are then combined into a dataset for training Neural Network models and a dataset for training Gradient Boosted Decision Trees models.
+
+To run this script, the dataset needs to be downloaded from [Kaggle](https://www.kaggle.com/competitions/predict-energy-behavior-of-prosumers) and unzipped to the directory of the script. On success, two pickle files will be produced and the following printed on screen:
 
 ```
 $python3 main.py
@@ -20,9 +22,7 @@ GBDT dataframe done and saved:
 NaN/Inf = 7152, NonNum Cols = 0, shape = (2012496, 201)
 ```
 
-Two pickle files will be produced on success.
-
-The preprocessing functions are intentionally saved in multiple utilities scripts for clearity, and the scripts' names explain their purposes.
+For those interested, `(634, 24, 5, 8, 14, 16)` is an array of 634 days, 24 time-series per day, 5 steps per series, 8 * 14 grids per step, and 16 features per grid. This and other arrays were used to train a U-net-like 2D+3D Convolutional network, trying to find relation between forecasted and recorded weather data.
 
 A `Data` class is defined in accordance with the competition's way of providing the data - each object expects a day-worth of data in several dataframes. While the current script has one chain of methods for each of the dataframes, it is also possible to have one chain for all of them, by having the `Data` class inheriting the `FocusableBase` defined but unused in `data_class.py`. `FocusableBase` lets us designate a dataframe-of-focus and redirect all method calls to it. `FocusableBase` was made for fun :) only.
 
